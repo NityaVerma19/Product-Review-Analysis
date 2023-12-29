@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+df = pd.read_csv('reviews_cleaned.csv')
+
 st.set_page_config(
     page_title="Product Review Analysis",
     page_icon="💠",
@@ -11,6 +13,11 @@ st.set_page_config(
         'About': "# This is a header. This is an *extremely* cool app!"
     }
 )
+#EDA
+
+def eda():
+    avg_rating = df['Score'].mean()     #finds the average rating
+    st.metric(label= 'Average Rating',value= avg_rating)
 
 
 st.sidebar.title('Product Review Analysis')
@@ -23,6 +30,7 @@ if option == "Analysis":
         )
     if add_radio == 'EDA':
         st.title('EDA')
+        eda()
     else:
         st.title('Sentiment Analysis')
 
